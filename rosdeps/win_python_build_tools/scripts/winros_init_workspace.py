@@ -33,6 +33,7 @@
 from __future__ import print_function
 import sys
 import os
+import os.path
 import win_ros
 import argparse
 import wstool.wstool_cli
@@ -81,8 +82,9 @@ if __name__ == "__main__":
     if os.path.isabs(args.path):
        base_path = args.path
     else:
-        base_path = os.path.abspath(args.path) 
-    os.mkdir(base_path)
+        base_path = os.path.abspath(args.path)
+    if not os.path.isdir(d):
+        os.mkdir(base_path)
     os.mkdir(os.path.join(base_path, 'src'))
     os.mkdir(os.path.join(base_path, 'build'))
     wstool_arguments = ['wstool', 'init', os.path.join(base_path, 'src')]
