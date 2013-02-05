@@ -5,9 +5,9 @@
     version: groovy-devel
 
 - git:
-    uri: 'https://github.com/yujinrobot/genmsg.git'
+    uri: 'https://github.com/ros/genmsg.git'
     local-name: genmsg
-    version: groovy-devel
+    version: groovy-devel 
 
 - git:
     uri: 'https://github.com/ros/gencpp.git'
@@ -63,7 +63,7 @@
 #    version: master
 
 - git:
-    uri: 'https://github.com/stonier/win_ros.git'
+    uri: 'https://github.com/yujinrobot/win_ros.git'
     local-name: win_ros
     version: groovy-devel
 

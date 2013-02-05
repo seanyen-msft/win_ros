@@ -3,7 +3,7 @@ from distutils.core import setup
 
 
 setup(name='winros-python-build-tools',
-      version= '0.1.0',
+      version= '0.1.1',
       packages=['rosinstall', 'vcstools', 'wstool', 'rospkg', 'catkin_pkg', 'win_ros'],
       package_dir = {'':'src'},
       scripts = ["scripts/winros_wstool.py", "scripts/wstool.bat",
