@@ -3,7 +3,7 @@ from distutils.core import setup
 
 
 setup(name='winros-python-build-tools',
-      version= '0.1.1',
+      version= '0.1.2',
       packages=['rosinstall', 'vcstools', 'wstool', 'rospkg', 'catkin_pkg', 'win_ros'],
       package_dir = {'':'src'},
       package_data = {'win_ros': [
@@ -13,6 +13,8 @@ setup(name='winros-python-build-tools',
       scripts = ["scripts/winros_wstool.py", "scripts/wstool.bat",
                  "scripts/winros_rosversion.py", "scripts/rosversion.bat", 
                  "scripts/winros_catkin_create_pkg.py", "scripts/catkin_create_pkg.bat", 
+                 "scripts/winros_cmake.py", "scripts/winros_cmake.bat", 
+                 "scripts/winros_make.py", "scripts/winros_make.bat", 
                  "scripts/winros_init_workspace.py", "scripts/winros_init_workspace.bat"],
       author = "Daniel Stonier", 
       author_email = "d.stonier@gmail.com",
