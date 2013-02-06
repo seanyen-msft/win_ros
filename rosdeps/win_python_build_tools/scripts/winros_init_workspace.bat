@@ -1,4 +1,4 @@
-ECHO OFF
+@echo off
 
 REM Used to help execute wstool because windows is trivially fixated 
 REM on extensions.

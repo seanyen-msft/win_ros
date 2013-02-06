@@ -83,7 +83,7 @@ if __name__ == "__main__":
        base_path = args.path
     else:
         base_path = os.path.abspath(args.path)
-    if not os.path.isdir(d):
+    if not os.path.isdir(base_path):
         os.mkdir(base_path)
     os.mkdir(os.path.join(base_path, 'src'))
     os.mkdir(os.path.join(base_path, 'build'))
@@ -109,3 +109,4 @@ if __name__ == "__main__":
         populate(base_path, 'https://raw.github.com/yujinrobot/win_ros/groovy-devel/msvc_unstable_comms.rosinstall')
         distro = win_ros.UNSTABLE
     win_ros.write_toplevel_cmake(os.path.join(base_path, 'src'), distro)
+    win_ros.write_cmake_files(os.path.join(base_path, 'src'))
