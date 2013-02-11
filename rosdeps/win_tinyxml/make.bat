@@ -22,7 +22,7 @@ echo.
 echo Creates local build and install directories for building a static tinyxml lib.
 echo.
 echo   clean      Remove build and install directories
-echo   make       Cmake and nmake the static library
+echo   compile    Cmake and nmake the static library
 echo   install    Collected headers and static library together
 echo.
 goto End
