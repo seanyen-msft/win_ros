@@ -67,7 +67,7 @@ def execute_cmake(src_path, build_path):
     if not os.path.isdir(build_path):
         os.mkdir(build_path)
     #cmake_command = 'cmake -G "NMake Makefiles" ' + cache_cmake_str + ' ' + flags_cmake +  ' ' + src_path
-    cmake_command = 'cmake -G "NMake Makefiles" ' + flags_cmake +  ' ' + src_path
+    cmake_command = 'cmake -G "NMake Makefiles" ' + flags_cmake_str +  ' ' + src_path
     print("\nExecuting cmake on the workspace source directory:\n")
     print("  %s\n" % cmake_command)
     os.chdir(build_path) 
