@@ -52,7 +52,7 @@ import subprocess
 
 def execute_cmake(src_path, build_path):
     flags_cmake = os.path.join(src_path, 'MsvcFlags.cmake')
-    #cache_cmake = os.path.join(src_path, 'MsvcCache.cmake')
+    cache_cmake = os.path.join(src_path, 'workspace.cmake')
     if not os.path.isfile(os.path.join(src_path, 'CMakeLists.txt')):
         sys.exit("./src/CMakeLists.txt not found, aborting.")
     if os.path.isfile(flags_cmake):
@@ -60,14 +60,13 @@ def execute_cmake(src_path, build_path):
     else:
         sys.exit("./src/MsvcFlags.cmake not found, aborting.")
         
-    #if os.path.isfile(cache_cmake):
-    #    cache_cmake_str =  '-C "' + cache_cmake + '"'
-    #else:
-    #    cache_cmake_str = ''
+    if os.path.isfile(cache_cmake):
+        cache_cmake_str =  '-C "' + cache_cmake + '"'
+    else:
+        cache_cmake_str = ''
     if not os.path.isdir(build_path):
         os.mkdir(build_path)
-    #cmake_command = 'cmake -G "NMake Makefiles" ' + cache_cmake_str + ' ' + flags_cmake +  ' ' + src_path
-    cmake_command = 'cmake -G "NMake Makefiles" ' + flags_cmake_str +  ' ' + src_path
+    cmake_command = 'cmake -G "NMake Makefiles" ' + cache_cmake_str + ' ' + flags_cmake_str +  ' ' + src_path
     print("\nExecuting cmake on the workspace source directory:\n")
     print("  %s\n" % cmake_command)
     os.chdir(build_path) 
