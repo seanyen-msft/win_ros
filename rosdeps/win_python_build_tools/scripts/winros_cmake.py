@@ -34,6 +34,7 @@ from __future__ import print_function
 import sys
 import os
 import os.path
+import shutil
 import subprocess
 import win_ros
 import argparse
@@ -47,8 +48,7 @@ def parse_args():
   4. Expects cmake cache settings in ./src/MsvcCache.cmake",
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
-#    parser.add_argument('--sdk-stable', action='store_true',  # default is true
-#                        help='populate with the sdk stable sources [false]')
+    parser.add_argument('--clean', action='store_true', help='clean the build directory before configuring [false]')
 #    parser.add_argument('path', type=str, default=".",
 #                   help='base path for the workspace')
     return parser.parse_args()
@@ -60,5 +60,6 @@ if __name__ == "__main__":
     src_path = os.path.join(ws_path, 'src')
     if not os.path.isdir(src_path):
         sys.exit("./src not found, aborting.")
-
+    if args.clean:
+        shutil.rmtree(os.path.join(ws_path,"build"))
     win_ros.execute_cmake(src_path, build_path)
