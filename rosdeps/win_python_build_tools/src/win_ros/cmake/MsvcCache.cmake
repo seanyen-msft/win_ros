@@ -19,7 +19,13 @@ set(INSTALL_ROOT "C:/opt/ros/groovy/x86" CACHE PATH "Install root.")
 # - make sure any projects on top are built in debug mode also. 
 set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build mode.")
 set(CMAKE_INSTALL_PREFIX ${INSTALL_ROOT} CACHE PATH "Install root location.")
-set(CATKIN_ROSDEPS_PATH ${ROSDEPS_ROOT} CACHE STRING "Prefix to the rosdep root directory(s).")
+# Add the rosdep root to the include directories and cmake find_xxx path.
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${ROSDEPS_ROOT}/include")
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH};${ROSDEPS_ROOT})
+# BOOST_ALL_NO_LIB : don't auto-link in windoze (better portability -> see FindBoost.cmake)
+# BOOST_ALL_DYN_LINK=1 : actually redundant since we turn off auto-linking above
+# Ordinarily it will choose dynamic links instead of static links
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /DBOOST_ALL_NO_LIB /DBOOST_ALL_DYN_LINK")
 
 ###########################
 # Catkin
