@@ -8,6 +8,8 @@ if X%COMMAND%==Xclean goto Clean
 if X%COMMAND%==Xall goto Download
 if X%COMMAND%==Xdownload goto Download
 if X%COMMAND%==Xdistro goto Distro
+if X%COMMAND%==Xinstall goto Distro
+if X%COMMAND%==Xuninstall goto Uninstall
 if X%COMMAND%==Xupload goto Upload
 goto Help
 
@@ -75,8 +77,21 @@ rem )
 if X%COMMAND%==Xall (
   goto Upload
 ) else (
-  goto End
+  if X%COMMAND%==Xinstall (
+    goto Install
+  ) else (
+    goto End
+  )
 )
+
+:Install
+python setup.py install --record install.record
+goto End
+
+:Uninstall
+echo "Uninstalling files."
+for /f %%a in ('cat install.record') do rm -f %%a
+goto End
 
 :Upload
 echo.
