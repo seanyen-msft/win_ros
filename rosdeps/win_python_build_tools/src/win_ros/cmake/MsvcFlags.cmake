@@ -1,6 +1,12 @@
-# Only way I can find to set global compiler flags.
+# Only way I can find to set global compiler flags. I know, this is damned fugly, but both 
+# CMAKE_CXX_FLAGS and CMAKE_CXX_FLAGS can't be put in the initial cache...
 #
-# BOOST_ALL_NO_LIB : don't auto-link in windoze (better portability -> see FindBoost.cmake)
-# BOOST_ALL_DYN_LINK=1 : actually redundant since we turn off auto-linking above
-# Ordinarily it will choose dynamic links instead of static links
-#set(CMAKE_CXX_FLAGS_INIT "${CMAKE_CXX_FLAGS_INIT} /DBOOST_ALL_NO_LIB /DBOOST_ALL_DYN_LINK")
+# - CMAKE_CXX_FLAGS_INIT is rewritten after cache, hence ignoring anything in the cache.
+# - CMAKE_CXX_FLAGS is also ignored because the compiler detection will later clear it and reinitialise with CMAKE_CXX_FLAGS_INIT
+#
+# so we have to do here via a helper variable from the cache.
+#
+# Note: cmake sequence is cache->compiler detection->user rules override (this file)
+#
+message(STATUS "MSVC_CXX_FLAGS................${MSVC_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS_INIT "${CMAKE_CXX_FLAGS_INIT} ${MSVC_CXX_FLAGS}")
