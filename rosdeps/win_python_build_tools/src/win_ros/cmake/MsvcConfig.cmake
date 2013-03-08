@@ -25,8 +25,7 @@ set(CMAKE_PREFIX_PATH ${ROSDEPS_ROOT} CACHE PATH "software/ros workspace paths."
 # Ordinarily it will choose dynamic links instead of static links
 set(BOOST_CXX_FLAGS "/DBOOST_ALL_NO_LIB /DBOOST_ALL_DYN_LINK")
 set(ROSDEPS_CXX_FLAGS "-I${ROSDEPS_ROOT}/include")
-# We put this in cache for the user rules override to pick it up (see MsvcFlags.cmake)
-set(MSVC_CXX_FLAGS "${BOOST_CXX_FLAGS} ${ROSDEPS_CXX_FLAGS}" CACHE STRING "Extra compiler flags and include directories.")
+set(CMAKE_CXX_FLAGS "${BOOST_CXX_FLAGS} ${ROSDEPS_CXX_FLAGS}")
 
 ###########################
 # Catkin

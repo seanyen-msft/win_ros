@@ -7,7 +7,6 @@ setup(name='winros-python-build-tools',
       packages=['rosinstall', 'vcstools', 'wstool', 'rospkg', 'catkin_pkg', 'win_ros'],
       package_dir = {'':'src'},
       package_data = {'win_ros': [
-           'cmake/MsvcFlags.cmake',
            'cmake/MsvcConfig.cmake',
            ]},
       scripts = ["scripts/winros_wstool.py", "scripts/wstool.bat",
