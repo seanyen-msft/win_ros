@@ -37,6 +37,7 @@
 import sys
 import os
 import subprocess
+import shutil
 
 ##############################################################################
 # Constants
@@ -83,3 +84,13 @@ def execute_nmake(src_path, build_path):
     print("\nExecuting nmake in the root build directory\n")
     proc = subprocess.Popen('nmake', shell=True)
     proc.wait()
+
+
+def write_cmake_files(build_path):
+    '''
+      Copy the windows specific rules (e.g. compiler flags) to the build path.
+    '''
+    workspace_cmake_file = os.path.join(build_path, 'workspace.cmake')
+    if not os.path.isfile(workspace_cmake_file):  # don't overwrite if one is already there
+        dir = os.path.join(os.path.dirname(__file__), 'cmake')
+        shutil.copy(os.path.join(dir, 'MsvcConfig.cmake'), workspace_cmake_file)    

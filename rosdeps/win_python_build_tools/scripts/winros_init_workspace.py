@@ -109,4 +109,3 @@ if __name__ == "__main__":
         populate(base_path, 'https://raw.github.com/yujinrobot/win_ros/groovy-devel/msvc_unstable_comms.rosinstall')
         distro = win_ros.UNSTABLE
     win_ros.write_toplevel_cmake(os.path.join(base_path, 'src'), distro)
-    win_ros.write_cmake_files(os.path.join(base_path, 'src'))

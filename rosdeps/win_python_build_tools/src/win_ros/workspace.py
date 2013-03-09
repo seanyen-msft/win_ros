@@ -37,7 +37,6 @@
 import sys
 import os
 import urllib2
-import shutil
 
 ##############################################################################
 # Constants
@@ -132,10 +131,3 @@ def write_toplevel_cmake(base_path, distro = STABLE):
     local_file.write(u.read())
     local_file.close()
 
-def write_cmake_files(base_path):
-    '''
-      Copy the windows specific rules/cache files to the toplevel directory.
-    '''
-    dir = os.path.join(os.path.dirname(__file__), 'cmake')
-    #shutil.copy(os.path.join(dir, 'MsvcFlags.cmake'), base_path)
-    shutil.copy(os.path.join(dir, 'MsvcConfig.cmake'), os.path.join(base_path, 'workspace.cmake'))
