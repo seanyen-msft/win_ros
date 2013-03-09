@@ -7,8 +7,8 @@ if X%COMMAND%==Xhelp goto Help
 if X%COMMAND%==Xclean goto Clean
 if X%COMMAND%==Xall goto Download
 if X%COMMAND%==Xdownload goto Download
-if X%COMMAND%==Xdistro goto Distro
-if X%COMMAND%==Xinstall goto Distro
+if X%COMMAND%==Xdistro goto Download
+if X%COMMAND%==Xinstall goto Download
 if X%COMMAND%==Xuninstall goto Uninstall
 if X%COMMAND%==Xupload goto Upload
 goto Help
@@ -20,21 +20,21 @@ echo "Make sure you bump the version in setup.py if necessary."
 goto End
 
 :Download
-IF NOT EXIST %cd%\scripts\win-rosinstall.py (
+IF NOT EXIST %cd%\scripts\winros_wstool.py (
   echo.
   echo "Downloading sources and patching"
   echo.
   rem vcstools 0.1.26 rosinstall 0.6.22 wstool 0.0.2, rospkg 1.0.17, catkin_pkg 0.1.8
   call git clone https://github.com/ros/rospkg.git
-  cd rospkg & call git checkout 85310f77b412bb52a3190bcbadf3c0677be9ced4 & cd ..
+  cd rospkg & call git checkout 1.0.18 & cd ..
   call git clone https://github.com/vcstools/vcstools.git
-  cd vcstools & call git checkout c57f0ab7be2eede0ead237a783d2cf2c7dd94cba & cd ..  
+  cd vcstools & call git checkout 0.1.29 & cd ..  
   call git clone https://github.com/vcstools/rosinstall.git
-  cd rosinstall & call git checkout 73451bff3dac0d45a79a5dc177ea7a8fd743da3e & cd ..
+  cd rosinstall & call git checkout 0.6.25 & cd ..
   call git clone https://github.com/vcstools/wstool.git
-  cd wstool & call git checkout e2e4c03f915926ef45e142ea7c97df43fe1bf017 & cd ..
+  cd wstool & call git checkout 0.0.3 & cd ..
   call git clone https://github.com/ros-infrastructure/catkin_pkg.git
-  cd catkin_pkg & call git checkout 45f182bbb5e675d4b729e0da19c1e183e6940e8c & cd ..
+  cd catkin_pkg & call git checkout 0.1.10 & cd ..
   move %cd%\vcstools\src\vcstools %cd%\src\vcstools
   move %cd%\rosinstall\src\rosinstall %cd%\src\rosinstall
   move %cd%\wstool\src\wstool %cd%\src\wstool
@@ -52,21 +52,21 @@ IF NOT EXIST %cd%\scripts\win-rosinstall.py (
   rd /S /Q wstool
   rd /S /Q rospkg
   rd /S /Q catkin_pkg
-) ELSE (
+) else (
   echo.
   echo "Already prepped"
 )
-if X%COMMAND%==Xall (
-  goto Distro
-) else (
-  goto End
-)
+if X%COMMAND%==Xall goto Distro
+if X%COMMAND%==Xdistro goto Distro
+if X%COMMAND%==Xinstall goto Distro
+goto End
+
 
 :Distro
 echo.
 echo "Building msi installer."
 echo.
-# Always build, it's easier this way.
+rem Always build, it's easier this way.
 python setup.py bdist_msi
 rem IF NOT EXIST %cd%\dist (
 rem  python setup.py bdist_msi
