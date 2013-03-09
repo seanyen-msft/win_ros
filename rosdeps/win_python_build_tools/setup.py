@@ -8,7 +8,13 @@ setup(name='winros-python-build-tools',
       package_dir = {'':'src'},
       package_data = {'win_ros': [
            'cmake/MsvcConfig.cmake',
-           ]},
+           ],
+           'catkin_pkg': [
+             'templates/groovy/CMakeLists.txt.in',
+             'templates/groovy/metapackage.cmake.in',
+             'templates/groovy/package.xml.in',
+           ] 
+        },
       scripts = ["scripts/winros_wstool.py", "scripts/wstool.bat",
                  "scripts/winros_rosversion.py", "scripts/rosversion.bat", 
                  "scripts/winros_catkin_create_pkg.py", "scripts/catkin_create_pkg.bat", 
