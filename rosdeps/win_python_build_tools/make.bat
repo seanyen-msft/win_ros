@@ -102,7 +102,7 @@ scp *.msi files@files.yujinrobot.com:pub/repositories/windows/python/2.7/
 goto End
 
 :Clean
-rd /S /Q %cd%\install.record
+rm %cd%\install.record
 rd /S /Q %cd%\build
 rd /S /Q %cd%\dist
 rd /S /Q %cd%\src\vcstools
