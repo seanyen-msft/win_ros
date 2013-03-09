@@ -62,6 +62,7 @@ if __name__ == "__main__":
         sys.exit("./src not found, aborting.")
     if args.clean:
         shutil.rmtree(build_path, ignore_errors=True)
-    os.mkdir(build_path)
+    if not os.path.isdir(build_path):
+        os.mkdir(build_path)
     win_ros.write_cmake_files(build_path)
     win_ros.execute_cmake(src_path, build_path)
