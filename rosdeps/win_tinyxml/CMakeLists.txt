@@ -1,21 +1,24 @@
-
+# Some pointers to be gleaned from libtinyxml-dev package on ubuntu
+# - static build only
+# - ros needs strings, not char*, so use -DTIXML_USE_STL
+#  - better still, hack tinyxml.h to force the definition, so other 
+#    packages (e.g. rospack) don't have to redefine it.
+# - only install tinyxml.h, not tinystring.h
 cmake_minimum_required(VERSION 2.8.3)
 project(tinyxml)
 
 set(SOURCES 
       tinyxml.cpp 
       tinyxmlparser.cpp 
-      xmltest.cpp 
+      #xmltest.cpp 
       tinyxmlerror.cpp 
       tinystr.cpp
 )
 
-# Make sure we compile with string compatibility for ros.
-add_definitions(-DTIXML_USE_STL)
-
 add_library(tinyxml STATIC ${SOURCES})
 
-file(GLOB HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.h)
+#file(GLOB HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.h)
+file(GLOB HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} tinyxml.h)
 
 install(FILES ${HEADERS} DESTINATION include)
 install(FILES tinyxml-config.cmake DESTINATION share/cmake/tinyxml)

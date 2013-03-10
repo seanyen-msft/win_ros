@@ -5,7 +5,7 @@ rem ************************** Variables ********************************
 
 set PWD=%~dp0
 set COMMAND=%1
-rem CMAKE_INSTALL_PREFIX=%PWD%\install
+rem set CMAKE_INSTALL_PREFIX=%PWD%\install
 set CMAKE_INSTALL_PREFIX=C:\opt\rosdeps\groovy\x86
 
 rem ************************** Options Parser ********************************

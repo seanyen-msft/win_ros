@@ -26,6 +26,11 @@ distribution.
 #ifndef TINYXML_INCLUDED
 #define TINYXML_INCLUDED
 
+// Force use of c++ strings instead of char*
+#ifndef TIXML_USE_STL
+        #define TIXML_USE_STL
+#endif
+
 #ifdef _MSC_VER
 #pragma warning( push )
 #pragma warning( disable : 4530 )
