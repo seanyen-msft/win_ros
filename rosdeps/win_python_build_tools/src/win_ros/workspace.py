@@ -47,8 +47,8 @@ STABLE =  0
 UNSTABLE = 1
 
 toplevel_cmake_url = { 
-    UNSTABLE : 'https://raw.github.com/ros/catkin/groovy-devel/cmake/toplevel.cmake', 
-    STABLE : 'https://raw.github.com/ros/catkin/groovy-devel/cmake/toplevel.cmake', 
+    UNSTABLE : 'https://raw.github.com/ros-windows/catkin/groovy-devel/cmake/toplevel.cmake', 
+    STABLE : 'https://raw.github.com/ros-windows/catkin/groovy-devel/cmake/toplevel.cmake', 
     #STABLE : 'https://raw.github.com/ros/catkin/3deda412ff09f94a5658a582062b22a8926c0b75/cmake/toplevel.cmake'
     }
 

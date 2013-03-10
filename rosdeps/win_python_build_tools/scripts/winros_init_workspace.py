@@ -99,13 +99,15 @@ if __name__ == "__main__":
     text = win_ros.write_setup_bat(base_path)
     distro = win_ros.STABLE  # default
     if args.sdk_stable:
-        populate(base_path, 'https://raw.github.com/yujinrobot/win_ros/groovy-devel/msvc_groovy.rosinstall')
+        #populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_groovy.rosinstall')
+        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable.rosinstall')
     if args.sdk_unstable:
-        populate(base_path, 'https://raw.github.com/yujinrobot/win_ros/groovy-devel/msvc_unstable.rosinstall')
+        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable.rosinstall')
         distro = win_ros.UNSTABLE
     if args.comms_stable:
-        populate(base_path, 'https://raw.github.com/yujinrobot/win_ros/groovy-devel/msvc_groovy_comms.rosinstall')
+        #populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_groovy_comms.rosinstall')
+        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable_comms.rosinstall')
     if args.comms_unstable:
-        populate(base_path, 'https://raw.github.com/yujinrobot/win_ros/groovy-devel/msvc_unstable_comms.rosinstall')
+        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable_comms.rosinstall')
         distro = win_ros.UNSTABLE
     win_ros.write_toplevel_cmake(os.path.join(base_path, 'src'), distro)
