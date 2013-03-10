@@ -1,8 +1,8 @@
 # Catkin is our development branch
 # Ros is awaiting a pull request on https://github.com/ros/ros/pull/6
 [
-{'git': {'local-name': 'catkin', 'version': 'groovy-devel', 'uri':'https://github.com/yujinrobot/catkin.git'}},
-{'git': {'local-name': 'ros', 'version': 'groovy-devel', 'uri':'https://github.com/yujinrobot/ros.git'}},
+{'git': {'local-name': 'catkin', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/catkin.git'}},
+{'git': {'local-name': 'ros', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/ros.git'}},
 {'git': {'local-name': 'rospack', 'version': 'groovy-devel', 'uri':'https://github.com/ros/rospack.git'}},
 ]
 
