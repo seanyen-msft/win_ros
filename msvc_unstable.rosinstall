@@ -3,7 +3,7 @@
 [
 {'git': {'local-name': 'catkin', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/catkin.git'}},
 {'git': {'local-name': 'ros', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/ros.git'}},
-{'git': {'local-name': 'rospack', 'version': 'groovy-devel', 'uri':'https://github.com/ros/rospack.git'}},
+{'git': {'local-name': 'rospack', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/rospack.git'}},
 ]
 
 #- git:
