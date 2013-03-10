@@ -41,3 +41,9 @@ set(CATKIN_BLACKLIST_STACKS "None" CACHE STRING "Semi-colon separated list of st
 set(Boost_DEBUG FALSE CACHE BOOL "Debug boost.")
 set(Boost_DETAILED_FAILURE_MSG FALSE CACHE BOOL "Detailed failure reports from boost.")
 
+###########################
+# Tinyxml
+###########################
+# should probably go into tinyxml's config somehow. We could put this into rospack and that works, 
+# but rospack seems to compile it ok in ubuntu without needing the definition set explicitly - how?
+add_definitions(-DTIXML_USE_STL)
