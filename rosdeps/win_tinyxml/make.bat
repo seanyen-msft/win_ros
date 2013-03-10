@@ -5,6 +5,8 @@ rem ************************** Variables ********************************
 
 set PWD=%~dp0
 set COMMAND=%1
+rem CMAKE_INSTALL_PREFIX=%PWD%\install
+set CMAKE_INSTALL_PREFIX=C:\opt\rosdeps\groovy\x86
 
 rem ************************** Options Parser ********************************
 
@@ -38,7 +40,7 @@ goto End
 :Compile
 mkdir %PWD%\build
 cd %PWD%\build
-cmake -G "NMake Makefiles" -DCMAKE_INSTALL_PREFIX="%PWD%\install" ..
+cmake -G "NMake Makefiles" -DCMAKE_INSTALL_PREFIX="%CMAKE_INSTALL_PREFIX%" ..
 nmake
 cd %PWD%
 goto End

@@ -10,6 +10,9 @@ set(SOURCES
       tinystr.cpp
 )
 
+# Make sure we compile with string compatibility for ros.
+add_definitions(-DTIXML_USE_STL)
+
 add_library(tinyxml STATIC ${SOURCES})
 
 file(GLOB HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.h)
