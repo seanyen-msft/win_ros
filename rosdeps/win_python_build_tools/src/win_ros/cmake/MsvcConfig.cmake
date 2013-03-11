@@ -16,8 +16,10 @@ set(INSTALL_ROOT "C:/opt/ros/groovy/x86" CACHE PATH "Install root.")
 # If you do want to build Debug:
 # - compile the rosdeps in debug mode
 # - call the visual studio shell script (usually in src/setup.bat) in debug mode
-# - make sure any projects on top are built in debug mode also. 
-set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build mode.")
+# - make sure any projects on top are built in debug mode also.
+# Note that this variable is forced to overwrite any default set by the cmake system
+# (this file is not a pre-cache file, but used at the start of catkin) 
+set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build mode." FORCE)
 set(CMAKE_INSTALL_PREFIX ${INSTALL_ROOT} CACHE PATH "Install root location.")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${ROSDEPS_ROOT}" CACHE PATH "semi-colon separated software/ros workspace paths.")
 # BOOST_ALL_NO_LIB : don't auto-link in windoze (better portability -> see FindBoost.cmake)
