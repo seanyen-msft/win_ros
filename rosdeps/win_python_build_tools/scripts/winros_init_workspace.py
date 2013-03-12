@@ -86,7 +86,6 @@ if __name__ == "__main__":
     if not os.path.isdir(base_path):
         os.mkdir(base_path)
     os.mkdir(os.path.join(base_path, 'src'))
-    os.mkdir(os.path.join(base_path, 'build'))
     wstool_arguments = ['wstool', 'init', os.path.join(base_path, 'src')]
     try:
         wstool.wstool_cli.wstool_main(wstool_arguments)
