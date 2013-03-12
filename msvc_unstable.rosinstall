@@ -4,7 +4,7 @@
 {'git': {'local-name': 'catkin', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/catkin.git'}},
 {'git': {'local-name': 'ros', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/ros.git'}},
 {'git': {'local-name': 'rospack', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/rospack.git'}},
-{'git': {'local-name': 'genmsg', 'version': 'groovy-devel', 'uri':'https://github.com/ros/genmsg.git'}},
+{'git': {'local-name': 'genmsg', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/genmsg.git'}},
 {'git': {'local-name': 'gencpp', 'version': 'groovy-devel', 'uri':'https://github.com/ros/gencpp.git'}},
 {'git': {'local-name': 'genpy', 'version': 'groovy-devel', 'uri':'https://github.com/ros/genpy.git'}},
 ]
