@@ -8,6 +8,7 @@ setup(name='winros-python-build-tools',
       package_dir = {'':'src'},
       package_data = {'win_ros': [
            'cmake/MsvcConfig.cmake',
+           'cmake/MsvcOverrides.cmake',
            ],
            'catkin_pkg': [
              'templates/groovy/CMakeLists.txt.in',

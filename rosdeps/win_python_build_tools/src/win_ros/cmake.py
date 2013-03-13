@@ -40,35 +40,18 @@ import subprocess
 import shutil
 
 ##############################################################################
-# Constants
-##############################################################################
-
-##############################################################################
-# Private Functions
-##############################################################################
-
-##############################################################################
 # Public Functions
 ##############################################################################
 
 def execute_cmake(src_path, build_path):
-    # Don't need cache or rule overrides anymore, we have catkin's workspace.cmake
-    #flags_cmake = os.path.join(src_path, 'MsvcFlags.cmake')
-    #cache_cmake = os.path.join(src_path, 'MsvcConfig.cmake')
     if not os.path.isfile(os.path.join(src_path, 'CMakeLists.txt')):
+        # Could copy it in from src/catkin/cmake/toplevel.cmake instead of aborting
         sys.exit("./src/CMakeLists.txt not found, aborting.")
-    #if os.path.isfile(flags_cmake):
-    #    flags_cmake_str =  '-DCMAKE_USER_MAKE_RULES_OVERRIDE:STRING="' + flags_cmake + '"'
-    #else:
-    #    sys.exit("./src/MsvcFlags.cmake not found, aborting.")
-    #if os.path.isfile(cache_cmake):
-    #    cache_cmake_str =  '-C "' + cache_cmake + '"'
-    #else:
-    #    cache_cmake_str = ''
-    #if not os.path.isdir(build_path):
+    if not os.path.isdir(build_path):
         os.mkdir(build_path)
-    cmake_command = 'cmake -G "NMake Makefiles" ' + src_path
-    #cmake_command = 'cmake -G "NMake Makefiles" ' + cache_cmake_str + ' ' + flags_cmake_str +  ' ' + src_path
+    override_cmake_str =  '-DCMAKE_USER_MAKE_RULES_OVERRIDE:STRING="' + override_filename() + '"'
+    cache_cmake_str =  '-C "' + os.path.join(parent_directory(build_path), 'config.cmake') + '"'
+    cmake_command = 'cmake -G "NMake Makefiles" ' + cache_cmake_str + ' ' + override_cmake_str +  ' ' + src_path
     print("\nExecuting cmake on the workspace source directory:\n")
     print("  %s\n" % cmake_command)
     os.chdir(build_path) 
@@ -85,12 +68,17 @@ def execute_nmake(src_path, build_path):
     proc = subprocess.Popen('nmake', shell=True)
     proc.wait()
 
+def override_filename():
+    return os.path.join(os.path.dirname(__file__), 'cmake', 'MsvcOverrides.cmake')
+
+def parent_directory(path):
+    return os.path.abspath(os.path.join(path, os.pardir))
 
 def write_cmake_files(build_path):
     '''
       Copy the windows specific rules (e.g. compiler flags) to the build path.
     '''
-    workspace_cmake_file = os.path.join(build_path, 'workspace.cmake')
-    if not os.path.isfile(workspace_cmake_file):  # don't overwrite if one is already there
+    config_cmake_file = os.path.join( parent_directory(build_path), "config.cmake")
+    if not os.path.isfile(config_cmake_file):  # don't overwrite if one is already there
         dir = os.path.join(os.path.dirname(__file__), 'cmake')
-        shutil.copy(os.path.join(dir, 'MsvcConfig.cmake'), workspace_cmake_file)    
+        shutil.copy(os.path.join(dir, 'MsvcConfig.cmake'), config_cmake_file)    

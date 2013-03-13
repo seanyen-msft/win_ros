@@ -17,17 +17,16 @@ set(INSTALL_ROOT "C:/opt/ros/groovy/x86" CACHE PATH "Install root.")
 # - compile the rosdeps in debug mode
 # - call the visual studio shell script (usually in src/setup.bat) in debug mode
 # - make sure any projects on top are built in debug mode also.
-# Note that this variable is forced to overwrite any default set by the cmake system
-# (this file is not a pre-cache file, but used at the start of catkin) 
-set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build mode." FORCE)
+set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build mode type.")
 set(CMAKE_INSTALL_PREFIX ${INSTALL_ROOT} CACHE PATH "Install root location.")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${ROSDEPS_ROOT}" CACHE PATH "semi-colon separated software/ros workspace paths.")
 # BOOST_ALL_NO_LIB : don't auto-link in windoze (better portability -> see FindBoost.cmake)
 # BOOST_ALL_DYN_LINK=1 : actually redundant since we turn off auto-linking above
 # Ordinarily it will choose dynamic links instead of static links
 set(BOOST_CXX_FLAGS "/DBOOST_ALL_NO_LIB /DBOOST_ALL_DYN_LINK")
-set(ROSDEPS_CXX_FLAGS "-I${ROSDEPS_ROOT}/include")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${BOOST_CXX_FLAGS} ${ROSDEPS_CXX_FLAGS}")
+set(ROSDPES_CXX_FLAGS "-I${ROSDEPS_ROOT}/include")
+# We use CMAKE_USER_MAKE_RULES_OVERRIDE to configure CMAKE_CXX_FLAGS_INIT ()
+set(WINROS_CXX_FLAGS_INIT "${BOOST_CXX_FLAGS} ${ROSDEPS_CXX_FLAGS}" CACHE STRING "Initial flags that get passed to CMAKE_CXX_FLAGS via the cmake override file.")
 
 ###########################
 # Catkin
