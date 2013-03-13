@@ -68,4 +68,4 @@ if __name__ == "__main__":
     win_ros.write_cmake_files(build_path)
     win_ros.execute_cmake(src_path, build_path)
     if not args.cmake_only:
-        winros.execute_nmake(build_path)
+        win_ros.execute_nmake(build_path)
