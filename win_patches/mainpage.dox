@@ -32,10 +32,10 @@ until those patches are accepted upstream.
  - rosbag_working.patch : working now.
   - https://code.ros.org/trac/ros/ticket/4006
 
- - Rospack : msvc port patching
-  - https://github.com/ros/rospack/pull/10 
- - Ros : path manipulation for windows' 10.ros.bat etc/profile script.
- 
+ - Rospack : msvc port patching [pull/10](https://github.com/ros/rospack/pull/10)
+ - Ros : path manipulation for windows' 10.ros.bat etc/profile script [pull/6](https://github.com/ros/ros/pull/6).
+
+
 \section Patched
 
  - genmsg needed cross platform absolute path checking for actionlib
