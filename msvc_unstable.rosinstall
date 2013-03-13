@@ -9,8 +9,9 @@
 {'git': {'local-name': 'genpy', 'version': 'groovy-devel', 'uri':'https://github.com/ros/genpy.git'}},
 {'git': {'local-name': 'genlisp', 'version': 'groovy-devel', 'uri':'https://github.com/ros/genlisp.git'}},
 {'git': {'local-name': 'message_generation', 'version': 'groovy-devel', 'uri':'https://github.com/ros/message_generation.git'}},
-{'git': {'local-name': 'message_runtime', 'version': 'groovy-devel', 'uri':'https://github.com/ros/message_runtime.git'}},
+{'git': {'local-name': 'roscpp_core', 'version': 'groovy-devel', 'uri':'https://github.com/ros/roscpp_core.git'}},
 {'git': {'local-name': 'std_msgs', 'version': 'groovy-devel', 'uri':'https://github.com/ros/std_msgs.git'}},
+{'git': {'local-name': 'message_runtime', 'version': 'groovy-devel', 'uri':'https://github.com/ros/message_runtime.git'}},
 ]
 
 #{'git': {'local-name': 'ros_comm', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/ros_comm.git'}},
