@@ -13,7 +13,7 @@
 {'git': {'local-name': 'message_generation', 'version': 'groovy-devel', 'uri':'https://github.com/ros/message_generation.git'}},
 {'git': {'local-name': 'message_runtime', 'version': 'groovy-devel', 'uri':'https://github.com/ros/message_runtime.git'}},
 {'git': {'local-name': 'std_msgs', 'version': 'groovy-devel', 'uri':'https://github.com/ros/std_msgs.git'}},
-{'git': {'local-name': 'common_msgs', 'version': 'groovy-devel', 'uri':'https://github.com/ros/std_msgs.git'}},
+{'git': {'local-name': 'common_msgs', 'version': 'groovy-devel', 'uri':'https://github.com/ros/common_msgs.git'}},
 ]
 
 
