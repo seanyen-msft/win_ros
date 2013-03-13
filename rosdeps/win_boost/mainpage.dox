@@ -7,5 +7,21 @@
  - Version: 1.47.0
  - Url: http://gitorious.org/boost/cmake/trees/master
  - Status: https://svn.boost.org/trac/boost/wiki/CMakeModularizationStatus
+
+\section Patches
+
+I also add a variable to check whether the import libraries have been added or not yet so that
+catkin doesn't try and add them twice (get fail trying to add the 'same' target).
+
+In lib/Boost.cmake:
+
+SET(Boost_IMPORT_TARGETS_ADDED TRUE)
+
+In share/boost-1.47.0/cmake:
+
+if(NOT Boost_IMPORT_TARGETS_ADDED)
+  include("${CWD}/../../../lib//Boost.cmake")
+endif()
+
   
 */
