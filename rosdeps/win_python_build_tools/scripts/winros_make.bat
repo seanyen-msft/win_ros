@@ -1,6 +1,6 @@
 @echo off
 
-REM Used to help execute wstool because windows is trivially fixated 
+REM Used to help execute winros_make because windows is trivially fixated 
 REM on extensions.
 
 set DIR=%~dp0
