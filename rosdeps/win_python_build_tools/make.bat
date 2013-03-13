@@ -33,9 +33,8 @@ IF NOT EXIST %cd%\scripts\winros_wstool.py (
   cd rosinstall & call git checkout 0.6.25 & cd ..
   call git clone https://github.com/vcstools/wstool.git
   cd wstool & call git checkout 0.0.3 & cd ..
-  call git clone https://github.com/ros-windows/catkin_pkg.git
-  rem call git clone https://github.com/ros-infrastructure/catkin_pkg.git
-  rem cd catkin_pkg & call git checkout 0.1.10 & cd ..
+  call git clone https://github.com/ros-infrastructure/catkin_pkg.git
+  cd catkin_pkg & call git checkout 0.1.10 & cd ..
   move %cd%\vcstools\src\vcstools %cd%\src\vcstools
   move %cd%\rosinstall\src\rosinstall %cd%\src\rosinstall
   move %cd%\wstool\src\wstool %cd%\src\wstool
