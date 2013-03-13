@@ -25,8 +25,6 @@ until those patches are accepted upstream.
   - https://code.ros.org/trac/ros/ticket/3945
  - message_filters_windoze.patch : adds windows declspecs.
   - https://code.ros.org/trac/ros/ticket/3958
- - rospy_noop_badtopics.patch : bugfix to hacked nooop code to avoid spammy exceptions
-  - https://code.ros.org/trac/ros/ticket/3959
  - rosbag_decl.patch : adds windows declspecs, class->struct warning removals.
   - https://code.ros.org/trac/ros/ticket/3997
  - rosbag_working.patch : working now.
@@ -38,6 +36,8 @@ until those patches are accepted upstream.
 
 \section Patched
 
+ - rospy_noop_badtopics.patch : bugfix to hacked nooop code to avoid spammy exceptions
+  - https://code.ros.org/trac/ros/ticket/3959
  - genmsg needed cross platform absolute path checking for actionlib
   - https://github.com/ros/genmsg/pull/4
  - genpy_nodelete.patch : tempfile bug that fixes rosbag compression.
