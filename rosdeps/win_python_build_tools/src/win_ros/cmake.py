@@ -58,7 +58,7 @@ def execute_cmake(src_path, build_path):
     proc = subprocess.Popen(cmake_command, shell=True)
     proc.wait()
     
-def execute_nmake(src_path, build_path):
+def execute_nmake(build_path):
     if not os.path.isdir(build_path):
         execute_cmake(src_path, build_path)
     if not os.path.isfile(os.path.join(build_path, 'CMakeCache.txt')):

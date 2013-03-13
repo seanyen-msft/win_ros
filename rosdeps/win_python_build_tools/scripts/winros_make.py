@@ -34,18 +34,22 @@ from __future__ import print_function
 import sys
 import os
 import os.path
+import shutil
 import subprocess
 import win_ros
 import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser(description="\
-        Runs nmake on cmake configured build directory:\n\n\
-  1. Will run winros_cmake if no build directory is yet prepared.",
+        Runs cmake on winros sources:\n\n\
+  1. Expects sources are in ./src \n\
+  2. Expects a toplevel cmake file in ./src/CMakeList.txt\n\
+  3. Expects configuration settings in ./config.cmake\n",
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
-#    parser.add_argument('--sdk-stable', action='store_true',  # default is true
-#                        help='populate with the sdk stable sources [false]')
+    parser.add_argument('--clean', action='store_true', help='clean the build directory before configuring [false]')
+    parser.add_argument('--cleanall', action='store_true', help='clean even the initial cache (config) file [false]')
+    parser.add_argument('--cmake-only', action='store_true', help='do not compile, cmake configuration only [false]')
 #    parser.add_argument('path', type=str, default=".",
 #                   help='base path for the workspace')
     return parser.parse_args()
@@ -57,5 +61,11 @@ if __name__ == "__main__":
     src_path = os.path.join(ws_path, 'src')
     if not os.path.isdir(src_path):
         sys.exit("./src not found, aborting.")
-
-    win_ros.execute_nmake(src_path, build_path)
+    if args.clean or args.cleanall:
+        shutil.rmtree(build_path, ignore_errors=True)
+    if args.cleanall and os.path.isfile(os.path.join(ws_path, 'config.cmake')):
+        os.remove(os.path.join(ws_path, 'config.cmake'))
+    win_ros.write_cmake_files(build_path)
+    win_ros.execute_cmake(src_path, build_path)
+    if not args.cmake_only:
+        winros.execute_nmake(build_path)
