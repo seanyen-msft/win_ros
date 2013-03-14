@@ -46,29 +46,44 @@ def parse_args():
   2. Expects a toplevel cmake file in ./src/CMakeList.txt\n",
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
-    parser.add_argument('--purge', action='store_true', help='purge build directory and configuration file [false].')
+    parser.add_argument('-c', '--clean', action='store_true', help='remove build directory and configuration file [false].')
 #    parser.add_argument('path', type=str, default=".",
 #                   help='base path for the workspace')
     return parser.parse_args()
 
 if __name__ == "__main__":
+    print("")
     args = parse_args()
     ws_path = os.path.abspath(".")
     build_path = os.path.join(ws_path, 'build')
     src_path = os.path.join(ws_path, 'src')
-    if args.purge:
+    ##############################
+    # Valid workspace
+    ##############################
+    error_str = win_ros.is_invalid_workspace(src_path)
+    if error_str:
+        sys.exit(error_str)
+    ##############################
+    # Are we cleaning
+    ##############################
+    if args.clean:
         if os.path.isdir(build_path):
             shutil.rmtree(build_path, ignore_errors=True)
-            print("--- Build directory purged.")
+            print("--- build directory removed.")
         if os.path.isfile(os.path.join(ws_path, 'config.cmake')):
             os.remove(os.path.join(ws_path, 'config.cmake'))
-            print("--- File config.cmake purged.")
+            print("--- file config.cmake removed.")
         sys.exit(0)
-    if not os.path.isdir(src_path):
-        sys.exit("+++ ./src not found, aborting.")
-    if os.path.isdir(build_path):
-        sys.exit("+++ ./build already exists, aborting.")
+    ##############################
+    # Already exists
+    ##############################
+    if os.path.isfile(os.path.join(ws_path, 'config.cmake')):
+        sys.exit("+++ build configuration (config.cmake) already exists, aborting.")
+    ##############################
+    # Create
+    ##############################
     win_ros.write_cmake_files(ws_path)
+    shutil.rmtree(build_path, ignore_errors=True)
     os.mkdir(build_path)
-    print("--- Build directory created.")
-    print("--- Now edit config.cmake as you wish and compile using 'winros_make'.")
+    print("--- build configuration initialised with defaults.")
+    print("--- now edit config.cmake as you wish and build using 'winros_make'.")

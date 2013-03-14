@@ -49,4 +49,5 @@ def write_cmake_files(ws_path):
     config_cmake_file = os.path.join( ws_path, "config.cmake")
     if not os.path.isfile(config_cmake_file):  # don't overwrite if one is already there
         dir = os.path.join(os.path.dirname(__file__), 'cmake')
-        shutil.copy(os.path.join(dir, 'MsvcConfig.cmake'), config_cmake_file)    
+        shutil.copy(os.path.join(dir, 'MsvcConfig.cmake'), config_cmake_file)
+        

@@ -131,3 +131,19 @@ def write_toplevel_cmake(base_path, distro = STABLE):
     local_file.write(u.read())
     local_file.close()
 
+
+def is_invalid_workspace(src_path):
+    '''
+      Checks for source directory and source CMakeLists.txt.
+      
+      @return Error string if not valid, otherwise None
+    '''
+    error_str = None
+    if not os.path.isdir(src_path):
+        error_str = "[no %s]"% src_path
+    if not os.path.isfile(os.path.join(src_path, 'CMakeLists.txt')):
+        # Could copy it in from src/catkin/cmake/toplevel.cmake instead of aborting
+        error_str = "[no %s/CMakeLists.txt]"% src_path
+    if error_str:
+        return "+++ invalid workspace %s. Create a source workspace with 'winros_init_workspace'."%error_str
+    return None

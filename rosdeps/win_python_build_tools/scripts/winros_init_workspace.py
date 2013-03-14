@@ -48,13 +48,14 @@ def parse_args():
   3. Prepares a convenience setup.bat",
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
-    parser.add_argument('--sdk-stable', action='store_true',  # default is true
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--sdk-stable', action='store_true',  # default is true
                         help='populate with the sdk stable sources [false]')
-    parser.add_argument('--sdk-unstable', action='store_true',  # default is true
+    group.add_argument('--sdk-unstable', action='store_true',  # default is true
                         help='populate with the sdk unstable sources [false]')
-    parser.add_argument('--comms-stable', action='store_true',  # default is true
+    group.add_argument('--comms-stable', action='store_true',  # default is true
                         help='populate with the comms stable sources [false]')
-    parser.add_argument('--comms-unstable', action='store_true',  # default is true
+    group.add_argument('--comms-unstable', action='store_true',  # default is true
                         help='populate with the comms unstable sources [false]')
     parser.add_argument('path', type=str, default=".",
                    help='base path for the workspace')

@@ -47,9 +47,10 @@ def parse_args():
   3. Expects configuration settings in ./config.cmake\n",
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
-    parser.add_argument('--clean', action='store_true', help='clean the build directory (not config.cmake) before recompiling [false]')
-    parser.add_argument('--purge', action='store_true', help='purge build directory and configuration file [false].')
-    parser.add_argument('--cmake-only', action='store_true', help='do not compile, cmake configuration only [false]')
+    parser.add_argument('-p', '--pre-clean', action='store_true', help='clean the build directory (not config.cmake) before recompiling [false]')
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('-c', '--cmake-only', action='store_true', help='do not compile, cmake configuration only [false]')
+    group.add_argument('-m', '--make-only', action='store_true', help='do not cmake, only compile [false]')
 #    parser.add_argument('path', type=str, default=".",
 #                   help='base path for the workspace')
     return parser.parse_args()
@@ -59,22 +60,30 @@ if __name__ == "__main__":
     ws_path = os.path.abspath(".")
     build_path = os.path.join(ws_path, 'build')
     src_path = os.path.join(ws_path, 'src')
-    if not os.path.isdir(src_path):
-        sys.exit("+++ ./src not found, aborting (create with 'winros_init_workspace').")
-    if not os.path.isfile(os.path.join(src_path, 'CMakeLists.txt')):
-        # Could copy it in from src/catkin/cmake/toplevel.cmake instead of aborting
-        sys.exit("+++ ./src/CMakeLists.txt not found, aborting (create with 'winros_init_workspace').")
+    ##############################
+    # Valid workspace
+    ##############################
+    error_str = win_ros.is_invalid_workspace(src_path)
+    if error_str:
+        sys.exit(error_str)
+    ##############################
+    # Valid build configuration
+    ##############################
     if not os.path.isfile(os.path.join(ws_path, "config.cmake")):
-        sys.exit("+++ ./config.cmake not found, aborting (create with 'winros_init_build').")
-    if args.purge:
-        if os.path.isdir(build_path):
-            shutil.rmtree(build_path, ignore_errors=True)
-        if os.path.isfile(os.path.join(ws_path, 'config.cmake')):
-            os.remove(os.path.join(ws_path, 'config.cmake'))
-        print("--- You may now recreate the build directory with new config.cmake using 'winros_init_build'.")
-        sys.exit(0)
-    if args.clean:
+        print("--- no build configuration found (./config.cmake), creating a default.")
+        win_ros.write_cmake_files(ws_path)
         shutil.rmtree(build_path, ignore_errors=True)
-    win_ros.execute_cmake(src_path, build_path)
+        os.mkdir(build_path)
+    ##############################
+    # Building
+    ##############################
+    if args.pre_clean:
+        print("--- cleaning current cmake and build temporaries (not the build configuration).")
+        shutil.rmtree(build_path, ignore_errors=True)
+    if not args.make_only:
+        win_ros.execute_cmake(src_path, build_path)
+    elif not os.path.isfile(os.path.join(build_path, 'CMakeCache.txt')):
+        print("--- you must run cmake first, doing so now.")
+        win_ros.execute_cmake(src_path, build_path)
     if not args.cmake_only:
         win_ros.execute_nmake(build_path)
