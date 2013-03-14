@@ -1,20 +1,22 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.3)
 project(win_roscpp_tutorials)
-find_package(Boost COMPONENTS date_time thread)
-find_package(ROS COMPONENTS catkin genmsg roscpp)
-include_directories(${ROS_INCLUDE_DIRS})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+
+find_package(Boost REQUIRED COMPONENTS date_time thread)
+find_package(catkin REQUIRED COMPONENTS message_generation rostime roscpp rosconsole roscpp_serialization)
+
+include_directories(${catkin_INCLUDE_DIRS})
+link_directories(${catkin_LIBRARY_DIRS})
 
 add_service_files(DIRECTORY srv FILES TwoInts.srv)
 generate_messages(DEPENDENCIES std_msgs)
 
+catkin_package(CATKIN_DEPENDS message_runtime std_msgs)
 
 macro(rostutorial T)
   add_executable(win_${T} ${T}/${T}.cpp)
-  find_package(ROS COMPONENTS catkin genmsg rostime roscpp rosconsole roscpp_serialization)
-  target_link_libraries(win_${T} ${ROS_LIBRARIES} ${Boost_LIBRARIES})
+  target_link_libraries(win_${T} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
   add_dependencies(win_${T} win_roscpp_tutorials_gencpp)
-  install(TARGETS win_${T} RUNTIME DESTINATION share/win_roscpp_tutorials/bin)
+  install(TARGETS win_${T} RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 endmacro()
 
 foreach(dir
@@ -43,7 +45,5 @@ foreach(dir
 endforeach()
 
 add_executable(win_time_api_sleep time_api/sleep/sleep.cpp)
-target_link_libraries(win_time_api_sleep ${ROS_LIBRARIES})
-install(TARGETS win_time_api_sleep RUNTIME DESTINATION share/win_roscpp_tutorials/bin)
-
-catkin_project(win_roscpp_tutorials)
+target_link_libraries(win_time_api_sleep ${catkin_LIBRARIES})
+install(TARGETS win_time_api_sleep RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

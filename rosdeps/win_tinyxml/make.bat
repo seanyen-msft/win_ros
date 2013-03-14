@@ -40,7 +40,7 @@ goto End
 :Compile
 mkdir %PWD%\build
 cd %PWD%\build
-cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX="%CMAKE_INSTALL_PREFIX%" ..
+cmake -G "NMake Makefiles" -DTINYXML_BUGGER_OFF_CATKIN=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX="%CMAKE_INSTALL_PREFIX%" ..
 nmake
 cd %PWD%
 goto End

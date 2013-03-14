@@ -50,7 +50,6 @@ def parse_args():
     parser.add_argument('-p', '--pre-clean', action='store_true', help='clean the build directory (not config.cmake) before recompiling [false]')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-c', '--cmake-only', action='store_true', help='do not compile, cmake configuration only [false]')
-    group.add_argument('-m', '--make-only', action='store_true', help='do not cmake, only compile [false]')
 #    parser.add_argument('path', type=str, default=".",
 #                   help='base path for the workspace')
     return parser.parse_args()
@@ -80,10 +79,12 @@ if __name__ == "__main__":
     if args.pre_clean:
         print("--- cleaning current cmake and build temporaries (not the build configuration).")
         shutil.rmtree(build_path, ignore_errors=True)
-    if not args.make_only:
+    if os.path.isfile(os.path.join(build_path, 'CMakeCache.txt')):
+        if args.cmake_only:
+            win_ros.execute_cmake(src_path, build_path)
+        else:
+            win_ros.execute_nmake(build_path)
+    else:
         win_ros.execute_cmake(src_path, build_path)
-    elif not os.path.isfile(os.path.join(build_path, 'CMakeCache.txt')):
-        print("--- you must run cmake first, doing so now.")
-        win_ros.execute_cmake(src_path, build_path)
-    if not args.cmake_only:
-        win_ros.execute_nmake(build_path)
+        if not args.cmake_only:
+            win_ros.execute_nmake(build_path)
