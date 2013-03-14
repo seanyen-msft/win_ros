@@ -48,7 +48,7 @@ def parse_args():
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
     parser.add_argument('-p', '--pre-clean', action='store_true', help='clean the build directory (not config.cmake) before recompiling [false]')
-    group = parser.add_mutually_exclusive_group(required=True)
+    group = parser.add_mutually_exclusive_group()
     group.add_argument('-c', '--cmake-only', action='store_true', help='do not compile, cmake configuration only [false]')
     group.add_argument('-m', '--make-only', action='store_true', help='do not cmake, only compile [false]')
 #    parser.add_argument('path', type=str, default=".",
