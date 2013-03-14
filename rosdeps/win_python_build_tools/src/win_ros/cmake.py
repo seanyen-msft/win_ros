@@ -46,9 +46,11 @@ import shutil
 def execute_cmake(src_path, build_path):
     if not os.path.isdir(build_path):
         os.mkdir(build_path)
-    override_cmake_str =  '-DCMAKE_USER_MAKE_RULES_OVERRIDE:STRING="' + override_filename() + '"'
-    cache_cmake_str =  '-C "' + os.path.join(parent_directory(build_path), 'config.cmake') + '"'
-    cmake_command = 'cmake -G "NMake Makefiles" ' + cache_cmake_str + ' ' + override_cmake_str +  ' ' + src_path
+    ws_path = os.path.join(parent_directory(build_path))
+    override_cmake_str =  '-DCMAKE_USER_MAKE_RULES_OVERRIDE:STRING="' + override_filename() + '" '
+    cache_cmake_str =  '-C "' + os.path.join(ws_path, 'config.cmake') + '" '
+    devel_prefix = '-DCATKIN_DEVEL_PREFIX=' + os.path.join(ws_path, 'devel') + ' '
+    cmake_command = 'cmake -G "NMake Makefiles" ' + cache_cmake_str + override_cmake_str + devel_prefix + src_path
     print("\nExecuting cmake on the workspace source directory:\n")
     print("  %s\n" % cmake_command)
     os.chdir(build_path) 
