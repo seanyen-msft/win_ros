@@ -14,12 +14,8 @@
 {'git': {'local-name': 'message_runtime', 'version': 'groovy-devel', 'uri':'https://github.com/ros/message_runtime.git'}},
 {'git': {'local-name': 'std_msgs', 'version': 'groovy-devel', 'uri':'https://github.com/ros/std_msgs.git'}},
 {'git': {'local-name': 'common_msgs', 'version': 'groovy-devel', 'uri':'https://github.com/ros/common_msgs.git'}},
+{'hg' : {'local-name': 'actionlib', 'version': 'groovy-devel', 'uri':'https://kforge.ros.org/common/actionlib'}},
 ]
-
-
-#- hg:
-#    local-name: actionlib
-#    uri: 'https://kforge.ros.org/common/actionlib'
 
 #- git:
 #    uri: 'https://github.com/ros/ros_tutorials.git'
