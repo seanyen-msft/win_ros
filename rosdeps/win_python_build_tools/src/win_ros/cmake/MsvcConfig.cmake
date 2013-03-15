@@ -40,14 +40,6 @@ set(WINROS_CXX_FLAGS_INIT "${BOOST_CXX_FLAGS} ${ROSDEPS_CXX_FLAGS}" CACHE STRING
 #set(CATKIN_WHITELIST_PACKAGES "" CACHE STRING "List of ';' separated packages to build (must be a complete list)")
 
 ###########################
-# Catkin
-###########################
-# If you want to do a very minimal test (useful for quick catkin testing)
-#set(CATKIN_BUILD_STACKS "catkin;genmsg;gencpp;ros;roscpp_core" CACHE STRING "Semi-colon list of stacks to build.")
-set(CATKIN_BUILD_STACKS "ALL" CACHE STRING "Semi-colon list of stacks to build.")
-set(CATKIN_BLACKLIST_STACKS "None" CACHE STRING "Semi-colon separated list of stacks to exclude from the build.")
-
-###########################
 # Boost
 ###########################
 set(Boost_DEBUG FALSE CACHE BOOL "Debug boost.")
