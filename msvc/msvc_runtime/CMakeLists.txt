@@ -35,15 +35,6 @@ if(${USE_BATCH_HELPERS})
 else()  # USE EXE HELPERS
   include_directories(${catkin_INCLUDE_DIRS})
   add_subdirectory(src)
-  # Make sure these automagically get built
-  add_custom_target(msvc_runtime_dummy_target ALL
-    DEPENDS 
-      win_listener 
-      win_talker
-      rosgraph_msgs_gencpp
-      rosgraph_msgs_genpy
-      rosout
-  )
 endif()
 
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}) 
