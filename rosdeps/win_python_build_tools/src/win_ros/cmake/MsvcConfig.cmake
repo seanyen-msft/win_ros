@@ -27,14 +27,17 @@ set(BOOST_CXX_FLAGS "/DBOOST_ALL_NO_LIB /DBOOST_ALL_DYN_LINK")
 set(ROSDPES_CXX_FLAGS "-I${ROSDEPS_ROOT}/include")
 # We use CMAKE_USER_MAKE_RULES_OVERRIDE to configure CMAKE_CXX_FLAGS_INIT ()
 set(WINROS_CXX_FLAGS_INIT "${BOOST_CXX_FLAGS} ${ROSDEPS_CXX_FLAGS}" CACHE STRING "Initial flags that get passed to CMAKE_CXX_FLAGS via the cmake override file.")
+# If you want verbose debugging, uncomment these:
+#SET(CMAKE_START_TEMP_FILE "" CACHE STRING "")
+#SET(CMAKE_END_TEMP_FILE "" CACHE STRING "")
+#SET(CMAKE_VERBOSE_MAKEFILE 1 CACHE BOOL "Enable for verbose makefile information")
 
 ###########################
 # Catkin
 ###########################
-# If you want to do a very minimal test (useful for quick catkin testing)
-#set(CATKIN_BUILD_STACKS "catkin;genmsg;gencpp;ros;roscpp_core" CACHE STRING "Semi-colon list of stacks to build.")
-set(CATKIN_BUILD_STACKS "ALL" CACHE STRING "Semi-colon list of stacks to build.")
-set(CATKIN_BLACKLIST_STACKS "None" CACHE STRING "Semi-colon separated list of stacks to exclude from the build.")
+# Excluding or including packages
+#set(CATKIN_BLACKLIST_PACKAGES "" CACHE STRING "List of ';' separated packages to exclude")
+#set(CATKIN_WHITELIST_PACKAGES "" CACHE STRING "List of ';' separated packages to build (must be a complete list)")
 
 ###########################
 # Boost

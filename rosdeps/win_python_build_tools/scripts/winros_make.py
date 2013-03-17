@@ -58,6 +58,7 @@ if __name__ == "__main__":
     args = parse_args()
     ws_path = os.path.abspath(".")
     build_path = os.path.join(ws_path, 'build')
+    devel_path = os.path.join(ws_path, 'devel')
     src_path = os.path.join(ws_path, 'src')
     ##############################
     # Valid workspace
@@ -79,6 +80,7 @@ if __name__ == "__main__":
     if args.pre_clean:
         print("--- cleaning current cmake and build temporaries (not the build configuration).")
         shutil.rmtree(build_path, ignore_errors=True)
+        shutil.rmtree(devel_path, ignore_errors=True)
     if os.path.isfile(os.path.join(build_path, 'Makefile')):
         if args.cmake_only:
             win_ros.execute_cmake(src_path, build_path)

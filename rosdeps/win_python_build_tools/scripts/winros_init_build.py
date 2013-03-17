@@ -56,6 +56,7 @@ if __name__ == "__main__":
     args = parse_args()
     ws_path = os.path.abspath(".")
     build_path = os.path.join(ws_path, 'build')
+    devel_path = os.path.join(ws_path, 'devel')
     src_path = os.path.join(ws_path, 'src')
     ##############################
     # Valid workspace
@@ -69,7 +70,8 @@ if __name__ == "__main__":
     if args.clean:
         if os.path.isdir(build_path):
             shutil.rmtree(build_path, ignore_errors=True)
-            print("--- build directory removed.")
+            shutil.rmtree(devel_path, ignore_errors=True)
+            print("--- build, devel directories removed.")
         if os.path.isfile(os.path.join(ws_path, 'config.cmake')):
             os.remove(os.path.join(ws_path, 'config.cmake'))
             print("--- file config.cmake removed.")

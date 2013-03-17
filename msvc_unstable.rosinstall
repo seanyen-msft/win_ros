@@ -15,6 +15,7 @@
 {'git': {'local-name': 'std_msgs', 'version': 'groovy-devel', 'uri':'https://github.com/ros/std_msgs.git'}},
 {'git': {'local-name': 'common_msgs', 'version': 'groovy-devel', 'uri':'https://github.com/ros/common_msgs.git'}},
 {'hg' : {'local-name': 'actionlib', 'version': 'default', 'uri':'https://kforge.ros.org/common/actionlib'}},
+{'git': {'local-name': 'win_ros', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/win_ros.git'}},
 ]
 
 #- git:
