@@ -8,21 +8,19 @@
 #    ${CMAKE_CURRENT_SOURCE_DIR}/ros_bin.cpp
 #    )
 
-macro(add_pyexe name)
+###############################################################################
+# Macros
+###############################################################################
+
+macro(add_python_exe_helper name)
   # make the target name unique so we don't clash (e.g. rosbag target)
   add_executable(${name}_exe ros_bin.cpp)
-  install(TARGETS ${name}_exe RUNTIME DESTINATION bin)
   # ensure the output name isn't mucked up by the unique target name.
   set_target_properties(${name}_exe PROPERTIES OUTPUT_NAME ${name})
+  set_target_properties(${name}_exe PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_BIN_DESTINATION})
+  install(TARGETS ${name}_exe RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 endmacro()
 
-add_pyexe(rosmaster)
-add_pyexe(roscore)
-add_pyexe(rostopic)
-add_pyexe(roslaunch)
-add_pyexe(rosbag)
-add_pyexe(rosparam)
-add_pyexe(rosservice)
-#add_pyexe(rosrun) # It's a bash file, not a python file
-add_pyexe(roswtf)
-
+foreach(name ${NAMES})
+  add_python_exe_helper(${name})
+endforeach()

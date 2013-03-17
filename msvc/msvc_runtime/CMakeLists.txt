@@ -7,7 +7,7 @@ catkin_package()
 # Macros
 ################################################################
 
-macro(add_python_helper name)
+macro(add_python_batch_helper name)
   if(WIN32)
     set(PYTHON_TARGET ${name})
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/template.bat.in
@@ -21,35 +21,29 @@ endmacro()
 # Python Helpers
 ################################################################
 
-add_python_helper(rosbag)
-add_python_helper(roscore)
-add_python_helper(rosgraph)
-add_python_helper(roslaunch)
-add_python_helper(rosmaster)
-add_python_helper(rosnode)
-add_python_helper(rosparam)
-add_python_helper(rosservice)
-add_python_helper(rosmsg)
-add_python_helper(rossrv)
-add_python_helper(rostopic)
-add_python_helper(rosunit)
-add_python_helper(roswtf)
+set(USE_BATCH_HELPERS FALSE)
 
+# rosrun is a batch file, not a python file
+set(NAMES rosbag roscore rosgraph roslaunch rosmaster rosnode 
+          rosparam rosservice rosmsg rossrv rostopic rosunit
+          roswtf)
 
+if(${USE_BATCH_HELPERS})
+  foreach(name ${NAMES})
+    add_python_batch_helper(${name})
+  endforeach()
+else()  # USE EXE HELPERS
+  include_directories(${catkin_INCLUDE_DIRS})
+  add_subdirectory(src)
+  # Make sure these automagically get built
+  add_custom_target(msvc_runtime_dummy_target ALL
+    DEPENDS 
+      win_listener 
+      win_talker
+      rosgraph_msgs_gencpp
+      rosgraph_msgs_genpy
+      rosout
+  )
+endif()
 
-#if(WIN32)
-#  include_directories(${catkin_INCLUDE_DIRS})
-#  add_subdirectory(src)
-#  # Make sure these automagically get built
-#  add_custom_target(msvc_runtime_dummy_target ALL
-#    DEPENDS 
-#      win_listener 
-#      win_talker
-#      rosgraph_msgs_gencpp
-#      rosgraph_msgs_genpy
-#      rosout
-#  )
-#  install(DIRECTORY resources DESTINATION share/${PROJECT_NAME}) 
-#else()
-#  message(WARNING "This package is only useful when compiling for windows.")
-#endif()
+install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}) 
