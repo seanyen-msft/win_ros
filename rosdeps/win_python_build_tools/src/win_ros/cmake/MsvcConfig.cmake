@@ -4,7 +4,8 @@ get_filename_component(CWD ${CMAKE_CURRENT_LIST_FILE} PATH)
 # WinRos
 ###########################
 set(ROSDEPS_ROOT "C:/opt/rosdeps/groovy/x86" CACHE STRING "System root for ros dependency.")
-set(INSTALL_ROOT "C:/opt/ros/groovy/x86" CACHE PATH "Install root.")
+set(INSTALL_ROOT "%(config_install_root)s" CACHE PATH "Install root.")
+set(UNDERLAY_ROOTS "%(config_underlay_roots)s" CACHE PATH "Semi-colon separated list of underlay roots.")
 
 ###########################
 # CMake
@@ -19,7 +20,7 @@ set(INSTALL_ROOT "C:/opt/ros/groovy/x86" CACHE PATH "Install root.")
 # - make sure any projects on top are built in debug mode also.
 set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build mode type.")
 set(CMAKE_INSTALL_PREFIX ${INSTALL_ROOT} CACHE PATH "Install root location.")
-set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${ROSDEPS_ROOT}" CACHE PATH "semi-colon separated software/ros workspace paths.")
+set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${ROSDEPS_ROOT};${UNDERLAY_ROOTS}" CACHE PATH "semi-colon separated software/ros workspace paths.")
 # BOOST_ALL_NO_LIB : don't auto-link in windoze (better portability -> see FindBoost.cmake)
 # BOOST_ALL_DYN_LINK=1 : actually redundant since we turn off auto-linking above
 # Ordinarily it will choose dynamic links instead of static links

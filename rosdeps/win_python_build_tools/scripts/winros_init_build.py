@@ -47,6 +47,7 @@ def parse_args():
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
     parser.add_argument('-c', '--clean', action='store_true', help='remove build directory and configuration file [false].')
+    parser.add_argument('-u', '--underlays', action='store', default='', help='semi-colon list of catkin workspaces to utilise [/opt/ros/groovy]')
 #    parser.add_argument('path', type=str, default=".",
 #                   help='base path for the workspace')
     return parser.parse_args()
@@ -76,6 +77,7 @@ if __name__ == "__main__":
             os.remove(os.path.join(ws_path, 'config.cmake'))
             print("--- file config.cmake removed.")
         sys.exit(0)
+
     ##############################
     # Already exists
     ##############################
@@ -84,7 +86,7 @@ if __name__ == "__main__":
     ##############################
     # Create
     ##############################
-    win_ros.write_cmake_files(ws_path)
+    win_ros.write_cmake_files(ws_path, args.underlays)
     shutil.rmtree(build_path, ignore_errors=True)
     os.mkdir(build_path)
     print("--- build configuration initialised with defaults.")

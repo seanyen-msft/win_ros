@@ -48,7 +48,7 @@ def parse_args():
   3. Prepares a convenience setup.bat",
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
-    group = parser.add_mutually_exclusive_group(required=True)
+    group = parser.add_mutually_exclusive_group()
     group.add_argument('--sdk-stable', action='store_true',  # default is true
                         help='populate with the sdk stable sources [false]')
     group.add_argument('--sdk-unstable', action='store_true',  # default is true
