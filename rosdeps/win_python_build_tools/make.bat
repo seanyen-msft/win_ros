@@ -26,7 +26,7 @@ IF NOT EXIST %cd%\scripts\winros_wstool.py (
   echo.
   rem vcstools 0.1.26 rosinstall 0.6.22 wstool 0.0.2, rospkg 1.0.17, catkin_pkg 0.1.8
   call git clone https://github.com/ros/rospkg.git
-  cd rospkg & call git checkout 1.0.18 & cd ..
+  cd rospkg & call git checkout 408b3b22b871f2610a1826deeae28f70255250e3 & cd ..
   call git clone https://github.com/vcstools/vcstools.git
   cd vcstools & call git checkout 0.1.29 & cd ..  
   call git clone https://github.com/vcstools/rosinstall.git
