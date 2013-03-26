@@ -15,7 +15,7 @@ goto Help
 
 :Help
 echo.
-echo "Invalid usage: call with args from ['clean', 'all', 'download', 'distro', 'upload']"
+echo "Invalid usage: call with args from ['clean', 'all', 'download', 'distro', 'upload', 'install', 'uninstall']"
 echo "Make sure you bump the version in setup.py if necessary."
 goto End
 
