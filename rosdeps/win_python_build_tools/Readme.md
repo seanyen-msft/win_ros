@@ -1,4 +1,3 @@
-
 ## Developing Win Ros Tools
 
 Installation is usually via the .msi download, but that is painful when developing/modifying the win_ros python tools.
@@ -15,7 +14,7 @@ Installation is usually via the .msi download, but that is painful when developi
 
 Make sure that you don't move files between install and uninstall as the moved files will not be uninstalled.
 
-## New Release Instructinos
+## New Release Instructions
 
 If updating the version number for rospkg, rosinstall, vcstool and wstool.
 
