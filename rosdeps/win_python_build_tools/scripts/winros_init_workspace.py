@@ -99,8 +99,8 @@ if __name__ == "__main__":
     text = win_ros.write_setup_bat(base_path)
     distro = win_ros.STABLE  # default
     if args.sdk_stable:
-        #populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_groovy.rosinstall')
-        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable.rosinstall')
+        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_groovy.rosinstall')
+        #populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable.rosinstall')
     if args.sdk_unstable:
         populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable.rosinstall')
         distro = win_ros.UNSTABLE

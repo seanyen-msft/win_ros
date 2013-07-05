@@ -1,6 +1,6 @@
 <package>
   <name>win_python_build_tools</name>
-  <version>0.2.0</version>
+  <version>0.2.3</version>
   <description>
     Collects all the ros python build tools packages together in 
     one installer.
