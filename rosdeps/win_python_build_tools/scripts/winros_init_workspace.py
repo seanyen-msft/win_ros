@@ -48,17 +48,10 @@ def parse_args():
   3. Prepares a convenience setup.bat",
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('--sdk-stable', action='store_true',  # default is true
-                        help='populate with the sdk stable sources [false]')
-    group.add_argument('--sdk-unstable', action='store_true',  # default is true
-                        help='populate with the sdk unstable sources [false]')
-    group.add_argument('--comms-stable', action='store_true',  # default is true
-                        help='populate with the comms stable sources [false]')
-    group.add_argument('--comms-unstable', action='store_true',  # default is true
-                        help='populate with the comms unstable sources [false]')
     parser.add_argument('path', type=str, default=".",
-                   help='base path for the workspace')
+        help='base path for the workspace')
+    parser.add_argument('--track', action='store', default="hydro",
+        help='retrieve rosinstalls relevant to this track [groovy|hydro][hydro]')
     return parser.parse_args()
 
 def populate(base_path, rosinstall_file_uri):
@@ -97,17 +90,12 @@ if __name__ == "__main__":
         sys.stderr.write("ERROR in config: %s\n" % str(e))
         sys.exit(1)
     text = win_ros.write_setup_bat(base_path)
-    distro = win_ros.STABLE  # default
-    if args.sdk_stable:
+
+    if args.track == "hydro":
+        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/hydro-devel/msvc_hydro.rosinstall')
+        toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.5.69/cmake/toplevel.cmake'
+    else:
         populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_groovy.rosinstall')
-        #populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable.rosinstall')
-    if args.sdk_unstable:
-        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable.rosinstall')
-        distro = win_ros.UNSTABLE
-    if args.comms_stable:
-        #populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_groovy_comms.rosinstall')
-        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable_comms.rosinstall')
-    if args.comms_unstable:
-        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_unstable_comms.rosinstall')
-        distro = win_ros.UNSTABLE
-    win_ros.write_toplevel_cmake(os.path.join(base_path, 'src'), distro)
+        toplevel_cmake_url = 'https://raw.github.com/ros/catkin/groovy-devel/cmake/toplevel.cmake'
+
+    win_ros.write_toplevel_cmake(os.path.join(base_path, 'src'), toplevel_cmake_url)

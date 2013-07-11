@@ -46,10 +46,12 @@ def parse_args():
   2. Expects a toplevel cmake file in ./src/CMakeList.txt\n",
         epilog="See http://www.ros.org/wiki/win_python_build_tools for details.",
         formatter_class=argparse.RawTextHelpFormatter )
-    parser.add_argument('-c', '--clean', action='store_true', help='remove build directory and configuration file [false].')
-    parser.add_argument('-u', '--underlays', action='store', default='', help='semi-colon list of catkin workspaces to utilise [/opt/ros/groovy]')
-#    parser.add_argument('path', type=str, default=".",
-#                   help='base path for the workspace')
+    parser.add_argument('-c', '--clean', action='store_true',
+        help='remove build directory and configuration file [false].')
+    parser.add_argument('-u', '--underlays', action='store', default='',
+        help='semi-colon list of catkin workspaces to utilise [/opt/ros/hydro]')
+    parser.add_argument('--track', action='store', default="hydro",
+        help='retrieve rosinstalls relevant to this track [groovy|hydro][hydro]')
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -86,7 +88,7 @@ if __name__ == "__main__":
     ##############################
     # Create
     ##############################
-    win_ros.write_cmake_files(ws_path, args.underlays)
+    win_ros.write_cmake_files(ws_path, args.track, args.underlays)
     shutil.rmtree(build_path, ignore_errors=True)
     os.mkdir(build_path)
     print("--- build configuration initialised with defaults.")

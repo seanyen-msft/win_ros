@@ -3,7 +3,7 @@ get_filename_component(CWD ${CMAKE_CURRENT_LIST_FILE} PATH)
 ###########################
 # WinRos
 ###########################
-set(ROSDEPS_ROOT "C:/opt/rosdeps/groovy/x86" CACHE STRING "System root for ros dependency.")
+set(ROSDEPS_ROOT "%(config_rosdeps_root)s" CACHE STRING "System root for ros dependency.")
 set(INSTALL_ROOT "%(config_install_root)s" CACHE PATH "Install root.")
 set(UNDERLAY_ROOTS "%(config_underlay_roots)s" CACHE PATH "Semi-colon separated list of underlay roots.")
 
