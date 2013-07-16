@@ -39,20 +39,6 @@ import os
 import urllib2
 
 ##############################################################################
-# Constants
-##############################################################################
-
-# These are used to flip between stable/unstable downloads
-STABLE =  0
-UNSTABLE = 1
-
-toplevel_cmake_url = { 
-    UNSTABLE : 'https://raw.github.com/ros-windows/catkin/groovy-devel/cmake/toplevel.cmake', 
-    STABLE : 'https://raw.github.com/ros-windows/catkin/groovy-devel/cmake/toplevel.cmake', 
-    #STABLE : 'https://raw.github.com/ros/catkin/3deda412ff09f94a5658a582062b22a8926c0b75/cmake/toplevel.cmake'
-    }
-
-##############################################################################
 # Private Functions
 ##############################################################################
 
@@ -124,9 +110,9 @@ def write_setup_bat(base_path):
         f.write(text)
 
 
-def write_toplevel_cmake(base_path, distro = STABLE):
+def write_toplevel_cmake(base_path, toplevel_cmake_url):
 
-    u = urllib2.urlopen( toplevel_cmake_url[distro] )
+    u = urllib2.urlopen( toplevel_cmake_url )
     local_file = open(os.path.join(base_path, 'CMakeLists.txt'), 'w')
     local_file.write(u.read())
     local_file.close()
