@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>win_ros</name>
+  <version>0.2.0</version>
+  <description>
+    Supporting tools and demos for developing with ros on windows.
+  </description>
+  <maintainer email="yichoe@yujinrobot.com">Yeong-Il Choe</maintainer>
+  <license>BSD</license>
+  <url type="website">http://www.ros.org/wiki/win_ros</url>
+  <url type="repository">https://github.com/ros-windows/win_ros</url>
+  <url type="bugtracker">https://github.com/ros-windows/win_ros/issues</url>
+  <author email="d.stonier@gmail.com">Daniel Stonier</author>
+  <author email="yichoe@yujinrobot.com">Yeong-Il Choe</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>rospy</run_depend>
+  
+  <export>
+    <metapackage/>
+  </export>
+</package>
+
