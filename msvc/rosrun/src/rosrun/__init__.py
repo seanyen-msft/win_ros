@@ -34,6 +34,7 @@ import os
 import sys
 import shutil
 import platform
+import rospkg
 
 def rosrunmain(argv=sys.argv):
     """
@@ -56,7 +57,7 @@ def rosrunmain(argv=sys.argv):
         sys.exit(1)
     
     # find packages
-    paths = os.environ['LD_LIBRARY_PATH'].split(';')
+    paths = os.environ['LD_LIBRARY_PATH'].split(';') + rospkg.get_ros_package_path().split(';')
     pkgs = []
     for i in paths:
         pkg = os.path.join(i, argv[1])
@@ -96,8 +97,10 @@ def rosrunmain(argv=sys.argv):
     # make command and execute
     commandline = execs[key - 1]
     if len(argv) > 3:
-        for k in range(len(argv) - 3):
-            commandline += " "
-            commandline += argv[k + 3]
+        params = argv[3:]
+        commandline += ''.join([' %s'%d for d in params])
     print(commandline)
-    os.system(commandline)
+    try:
+        os.system(commandline)
+    except KeyboardInterrupt:
+        sys.exit(0)
