@@ -36,6 +36,7 @@ def get_py_templates(package):
     templates['mainpage.dox'] = utils.read_template(os.path.join(template_dir,'mainpage.dox'))
     templates['CMakeLists.txt'] = utils.read_template(os.path.join(template_dir,'CMakeLists.txt'))
     templates['package.xml'] = utils.read_template(os.path.join(template_dir,'package.xml'))
+    templates['setup.py'] = utils.read_template(os.path.join(template_dir,'setup.py'))
     templates[os.path.join('scripts',package)] = utils.read_template(os.path.join(template_dir,'scripts','PACKAGE_NAME'))
     templates[os.path.join('src',package,'__init__.py')] = utils.read_template(os.path.join(template_dir,'src','PACKAGE_NAME','__init__.py'))
     return templates
