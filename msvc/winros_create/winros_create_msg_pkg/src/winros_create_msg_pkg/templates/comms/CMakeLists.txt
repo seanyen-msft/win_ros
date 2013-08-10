@@ -1,26 +1,12 @@
 ##############################################################################
-# CMake
-##############################################################################
-
-# set(CMAKE_VERBOSE_MAKEFILE TRUE)
-
-##############################################################################
 # Catkin
 ##############################################################################
 
+cmake_minimum_required(VERSION 2.8.3)
 project(%(package)s)
 
-catkin_project(%(package)s
-  INCLUDE_DIRS include
-  DEPENDS %(cmake_depends)s
-)
-
 # Include actionlib_msgs as a dependency if adding actions
-# Move this call to stack.xml if you are calling find_package on a particular
-# component alot.
-find_package(ROS REQUIRED COMPONENTS genmsg std_msgs)
-
-include_directories(include)
+find_package(catkin REQUIRED COMPONENTS message_generation %(cmake_depends)s)
 
 ##############################################################################
 # Sources
@@ -43,14 +29,16 @@ add_service_files(
 #)
 
 # Include actionlib_msgs as a dependency if adding actions
-generate_messages(DEPENDENCIES std_msgs %(cmake_depends)s)
+generate_messages(DEPENDENCIES %(cmake_depends)s)
+
+# Include actionlib_msgs as a dependency if adding actions
+catkin_package(CATKIN_DEPENDS message_runtime %(cmake_depends)s)
 
 ##############################################################################
 # Install
 ##############################################################################
 
-install(DIRECTORY include/
-        DESTINATION include
-        FILES_MATCHING PATTERN "*.h"
-        PATTERN ".svn" EXCLUDE
-        PATTERN ".git" EXCLUDE)
+# Additional installation files
+#install(DIRECTORY include/${PROJECT_NAME}/
+#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#  FILES_MATCHING PATTERN "*.h")

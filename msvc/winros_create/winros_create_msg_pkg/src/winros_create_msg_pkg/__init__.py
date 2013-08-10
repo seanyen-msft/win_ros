@@ -27,10 +27,11 @@ def create_winros_catkin_package():
     (package, depends) = utils.parse_arguments(['std_msgs'])
     create_package_directory(package)
     templates = get_templates(package)
-    package_depends = ''.join(['  <depend package="%s"/>\n'%d for d in depends])
+    build_depends = ''.join(['  <build_depend>%s</build_depend>\n'%d for d in depends])
+    run_depends = ''.join(['  <run_depend>%s</run_depend>\n'%d for d in depends])
     cmake_depends = ''.join(['%s '%d for d in depends])
     for filename, template in templates.iteritems():
-        contents = utils.instantiate_template(template, package, package, utils.author_name(), package_depends, cmake_depends)
+        contents = utils.instantiate_template(template, package, package, utils.author_name(), build_depends, run_depends, cmake_depends)
         try:
             p = os.path.abspath(os.path.join(package, filename))
             f = open(p, 'w')
