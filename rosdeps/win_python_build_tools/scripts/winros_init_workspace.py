@@ -50,8 +50,8 @@ def parse_args():
         formatter_class=argparse.RawTextHelpFormatter )
     parser.add_argument('path', type=str, default=".",
         help='base path for the workspace')
-    parser.add_argument('--track', action='store', default="hydro",
-        help='retrieve rosinstalls relevant to this track [groovy|hydro][hydro]')
+    parser.add_argument('--track', action='store', default="",
+        help='retrieve rosinstalls relevant to this track [groovy|hydro]')
     return parser.parse_args()
 
 def populate(base_path, rosinstall_file_uri):
@@ -94,8 +94,10 @@ if __name__ == "__main__":
     if args.track == "hydro":
         populate(base_path, 'https://raw.github.com/ros-windows/win_ros/hydro-devel/msvc_hydro.rosinstall')
         toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.5.69/cmake/toplevel.cmake'
-    else:
+    elif args.track == "groovy":
         populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_groovy.rosinstall')
         toplevel_cmake_url = 'https://raw.github.com/ros/catkin/groovy-devel/cmake/toplevel.cmake'
+    else:
+        toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.5.69/cmake/toplevel.cmake'
 
     win_ros.write_toplevel_cmake(os.path.join(base_path, 'src'), toplevel_cmake_url)
