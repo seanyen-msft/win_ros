@@ -10,7 +10,6 @@
   <maintainer email="%(author)s@gmail.com">%(author)s</maintainer>
   <author>%(author)s</author>
   <license>BSD</license>
-%(package_depends)s
 
   <buildtool_depend>catkin</buildtool_depend>
  

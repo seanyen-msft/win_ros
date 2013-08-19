@@ -7,13 +7,10 @@ import utils
 def get_cpp_templates(package):
     template_dir = os.path.join(os.path.dirname(__file__),'templates', 'cpp') 
     templates = {}
-    templates['mainpage.dox'] = utils.read_template(os.path.join(template_dir,'mainpage.dox'))
     templates['CMakeLists.txt'] = utils.read_template(os.path.join(template_dir,'CMakeLists.txt'))
     templates['package.xml'] = utils.read_template(os.path.join(template_dir,'package.xml'))
     templates[os.path.join('include',package,package+'.hpp')] = utils.read_template(os.path.join(template_dir,'include','PACKAGE_NAME','package_name.hpp'))
-    templates[os.path.join('src','lib','CMakeLists.txt')] = utils.read_template(os.path.join(template_dir,'src','lib','CMakeLists.txt'))
     templates[os.path.join('src','lib',package+'.cpp')] = utils.read_template(os.path.join(template_dir,'src','lib','package_name.cpp'))
-    templates[os.path.join('src','CMakeLists.txt')] = utils.read_template(os.path.join(template_dir,'src','CMakeLists.txt'))
     templates[os.path.join('src','main.cpp')] = utils.read_template(os.path.join(template_dir,'src','main.cpp'))
     return templates
 
@@ -33,7 +30,6 @@ def create_cpp_package_directory(package):
 def get_py_templates(package):
     template_dir = os.path.join(os.path.dirname(__file__),'templates', 'py') 
     templates = {}
-    templates['mainpage.dox'] = utils.read_template(os.path.join(template_dir,'mainpage.dox'))
     templates['CMakeLists.txt'] = utils.read_template(os.path.join(template_dir,'CMakeLists.txt'))
     templates['package.xml'] = utils.read_template(os.path.join(template_dir,'package.xml'))
     templates['setup.py'] = utils.read_template(os.path.join(template_dir,'setup.py'))
@@ -55,7 +51,6 @@ def create_py_package_directory(package):
 def get_common_templates(package):
     template_dir = os.path.join(os.path.dirname(__file__),'templates', 'common') 
     templates = {}
-    templates['mainpage.dox'] = utils.read_template(os.path.join(template_dir,'mainpage.dox'))
     templates['CMakeLists.txt'] = utils.read_template(os.path.join(template_dir,'CMakeLists.txt'))
     templates['package.xml'] = utils.read_template(os.path.join(template_dir,'package.xml'))
     return templates
@@ -76,10 +71,11 @@ def create_winros_catkin_package():
     else:
         create_common_package_directory(package)
         templates = get_common_templates(package)
-    package_depends = ''.join(['  <depend package="%s"/>\n'%d for d in depends])
+    build_depends = ''.join(['  <build_depend>%s</build_depend>\n'%d for d in depends])
+    run_depends = ''.join(['  <run_depend>%s</run_depend>\n'%d for d in depends])
     cmake_depends = ''.join(['%s '%d for d in depends])
     for filename, template in templates.iteritems():
-        contents = utils.instantiate_template(template, package, package, utils.author_name(), package_depends, cmake_depends)
+        contents = utils.instantiate_template(template, package, package, utils.author_name(), build_depends, run_depends, cmake_depends)
         try:
             p = os.path.abspath(os.path.join(package, filename))
             f = open(p, 'w')

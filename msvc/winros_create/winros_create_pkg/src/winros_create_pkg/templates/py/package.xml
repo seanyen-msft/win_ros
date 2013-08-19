@@ -10,10 +10,9 @@
   <maintainer email="%(author)s@gmail.com">%(author)s</maintainer>
   <author>%(author)s</author>
   <license>BSD</license>
-%(package_depends)s
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>rospy</build_depend>
-  <run_depend>rospy</run_depend>
- 
+
+%(build_depends)s
+%(run_depends)s
 </package>
