@@ -1,7 +1,7 @@
 # Roughly in order of what is needed
 [
 {'svn': {'local-name': 'gtest', 'uri':'http://googletest.googlecode.com/svn/tags/release-1.6.0/'}},
-{'git': {'local-name': 'catkin', 'version': '0.5.69', 'uri':'https://github.com/ros/catkin.git'}},
+{'git': {'local-name': 'catkin', 'version': '0.5.78', 'uri':'https://github.com/ros/catkin.git'}},
 {'git': {'local-name': 'ros', 'version': 'hydro-devel', 'uri':'https://github.com/ros/ros.git'}},
 {'git': {'local-name': 'rospack', 'version': '2.1.21', 'uri':'https://github.com/ros/rospack.git'}},
 {'git': {'local-name': 'genmsg', 'version': '0.4.21', 'uri':'https://github.com/ros/genmsg.git'}},
