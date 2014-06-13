@@ -1,6 +1,6 @@
 # Roughly in order of what is needed
 [
-{'git': {'local-name': 'catkin', 'version': '0.5.69', 'uri':'https://github.com/ros/catkin.git'}},
+{'git': {'local-name': 'catkin', 'version': '0.5.78', 'uri':'https://github.com/ros/catkin.git'}},
 {'git': {'local-name': 'genmsg', 'version': '0.4.21', 'uri':'https://github.com/ros/genmsg.git'}},
 {'git': {'local-name': 'gencpp', 'version': '0.4.13', 'uri':'https://github.com/ros/gencpp.git'}},
 {'git': {'local-name': 'genpy', 'version': '0.4.13', 'uri':'https://github.com/ros/genpy.git'}},
