@@ -1,6 +1,6 @@
 # Roughly in order of what is needed
 [
-{'svn': {'local-name': 'gtest', 'uri':'http://googletest.googlecode.com/svn/tags/release-1.6.0/'}},
+{'git': {'local-name': 'gtest', 'version': 'release-1.6.0', 'uri': 'https://github.com/google/googletest'}}
 {'git': {'local-name': 'catkin', 'version': 'groovy-devel', 'uri':'https://github.com/ros-windows/catkin.git'}},
 {'git': {'local-name': 'ros', 'version': 'groovy-devel', 'uri':'https://github.com/ros/ros.git'}},
 {'git': {'local-name': 'rospack', 'version': 'groovy-devel', 'uri':'https://github.com/ros/rospack.git'}},
