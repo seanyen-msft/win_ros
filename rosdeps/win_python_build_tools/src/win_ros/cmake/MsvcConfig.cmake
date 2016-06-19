@@ -25,7 +25,7 @@ set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${ROSDEPS_ROOT};${UNDERLAY_ROOTS}" C
 # BOOST_ALL_DYN_LINK=1 : actually redundant since we turn off auto-linking above
 # Ordinarily it will choose dynamic links instead of static links
 set(BOOST_CXX_FLAGS "/DBOOST_ALL_NO_LIB /DBOOST_ALL_DYN_LINK")
-set(ROSDPES_CXX_FLAGS "-I${ROSDEPS_ROOT}/include")
+set(ROSDEPS_CXX_FLAGS "-I${ROSDEPS_ROOT}/include")
 # We use CMAKE_USER_MAKE_RULES_OVERRIDE to configure CMAKE_CXX_FLAGS_INIT ()
 set(WINROS_CXX_FLAGS_INIT "${BOOST_CXX_FLAGS} ${ROSDEPS_CXX_FLAGS}" CACHE STRING "Initial flags that get passed to CMAKE_CXX_FLAGS via the cmake override file.")
 # If you want verbose debugging, uncomment these:
