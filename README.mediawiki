@@ -2,6 +2,5 @@
 
 This stack provides resources for developing with ros on windows via:
 
-* Qt + Mingw cross compiler on linux
-* Msvc compiler on windows (v2010)
+* Msvc compiler on windows (v2010+)
 

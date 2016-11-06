@@ -1,1 +1,0 @@
-rosbuild_add_executable(win_add_two_ints_server add_two_ints_server.cpp)

@@ -1,1 +1,0 @@
-rosbuild_add_executable(win_parameters parameters.cpp)

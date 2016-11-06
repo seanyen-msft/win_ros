@@ -11,7 +11,7 @@ macro(add_python_batch_helper name)
   if(WIN32)
     set(PYTHON_TARGET ${name})
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/template.bat.in
-                        ${CATKIN_DEVEL_PREFIX}/bin/${name}.bat) 
+                        ${CATKIN_DEVEL_PREFIX}/bin/${name}.bat)
     install(PROGRAMS ${CATKIN_DEVEL_PREFIX}/bin/${PYTHON_TARGET}.bat 
                                DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
   endif()
@@ -21,19 +21,19 @@ endmacro()
 # Python Helpers
 ################################################################
 
-set(USE_BATCH_HELPERS FALSE)
+# Batch helpers
+set(BATCH_NAMES catkin_find catkin_init_workspace catkin_make catkin_make_isolated
+          catkin_package_version catkin_prepare_release catkin_test_results
+          catkin_topological_order)
 
-set(NAMES rosbag roscore rosgraph roslaunch rosmaster rosnode 
-          rosparam rosservice rosmsg rossrv rostopic rosunit
-          roswtf rosrun winros_create_pkg winros_create_msg_pkg)
-
-if(${USE_BATCH_HELPERS})
-  foreach(name ${NAMES})
+foreach(name ${BATCH_NAMES})
     add_python_batch_helper(${name})
-  endforeach()
-else()  # USE EXE HELPERS
-  include_directories(${catkin_INCLUDE_DIRS})
-  add_subdirectory(src)
-endif()
+endforeach()
 
-install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}) 
+# Executable helpers
+set(PYTHON_HELPER_NAMES rosbag rosclean rosconole roscore rosgraph roslaunch rosmaster rosnode
+                     rosparam rosservice rosmake rosmsg rossrv rostest rostopic rosunit
+					 roswtf rosrun xacro)
+
+include_directories(${catkin_INCLUDE_DIRS})
+add_subdirectory(src)

@@ -1,1 +1,0 @@
-rosbuild_add_executable(win_anonymous_listener anonymous_listener.cpp)

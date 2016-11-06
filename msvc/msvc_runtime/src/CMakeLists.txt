@@ -21,6 +21,6 @@ macro(add_python_exe_helper name)
   install(TARGETS ${name}_exe RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 endmacro()
 
-foreach(name ${NAMES})
+foreach(name ${PYTHON_HELPER_NAMES})
   add_python_exe_helper(${name})
 endforeach()

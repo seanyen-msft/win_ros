@@ -18,7 +18,6 @@
   <author>Daniel Stonier</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>win_roscpp_tutorials</build_depend>
   <build_depend>rosgraph_msgs</build_depend>
   <build_depend>rosout</build_depend> 
 </package>
